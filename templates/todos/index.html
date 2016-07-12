@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href={% static 'css/bootstrap.css' %}>
+    <style>
+        body{
+            background-color: darkseagreen;
+            align-content: center;
+        }
+
+    </style>
+</head>
+<body>
+<div style="height: 10%"><br/><br/></div>
+<div class="jumbotron">
+	<div class="container">
+		<h1>{{ welcome }}</h1>
+	</div>
+</div>
+<div class="row vertical-center-row">
+<a class="btn" ><h2>Click</h2></a>
+</div>
+</body>
+</html>

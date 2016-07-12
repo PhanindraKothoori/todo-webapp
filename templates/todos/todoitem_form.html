@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create TODO item</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href={% static 'css/bootstrap.css' %}>
+</head>
+<body class="container">
+<div class="jumbotron">
+	<div class="container">
+		<h1>Create a Todo Item now </h1>
+    </div>
+</div>
+<form class="form" method="post" class="form-switcher">
+    {% csrf_token %}
+
+    {{ form.desc.label }}:     {{ form.desc }}<br>
+    {{ form.due_date.label }}:     {{ form.due_date }}<br>
+    {{ form.completed.label }}:     {{ form.completed }}<br>
+
+    {{ form.todolist.label }}:  <select id="id_todolist" name="todolist">
+        {% for x,y in form.fields.todolist.choices|slice:"1:" %}
+{#            {% if  %}#}
+            <option value="{{ x }}" selected="selected">{{ y }}</option>
+{#            {% endif %}#}
+        {% endfor %}
+    </select>
+<br>
+    <input type="submit" value="Save">
+</form>
+
+</body>
+</html>

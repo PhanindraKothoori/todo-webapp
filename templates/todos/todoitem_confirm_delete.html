@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete the item?</title>
+</head>
+<body>
+<form method="post">
+    {{ form.as_p }}
+    {{ todoitem.desc }}
+    {% csrf_token %}
+    <input type="submit" value="Confirm">
+</form>
+</body>
+</html>

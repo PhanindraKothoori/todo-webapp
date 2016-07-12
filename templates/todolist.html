@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href={% static 'css/bootstrap.css' %}>
+    <link rel="stylesheet" href={% static 'css/materialize.css' %}>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src={% static 'js/jquery-2.2.4.min.js' %}></script>
+    <script src={% static 'js/bootstrap.min.js' %}></script>
+    <style>
+        .container-fluid {
+            background-color: #2386b9;
+        }
+
+        dl {
+            list-style: armenian;
+        }
+        .nav {
+            text-align: right;
+        }
+    </style>
+</head>
+<body class="container-fluid">
+<nav role="navigation">
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="nav container "  >
+        <a class="btn" href='{% url 'logout' %}' style="align-content: flex-end">logout</a>
+    </div><!-- /.navbar-collapse -->
+</nav>
+<h2>
+    <center>These are the list of your todos</center>
+</h2>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3">
+            <i>Add a New List</i>
+            <a class="btn-floating btn-large waves-effect waves-light red" href="/todo/createlist/"><i class="material-icons">add</i></a>
+        </div>
+        <div class="col-md-9">
+            <ul style="list-style: none" class="container-fluid">
+
+                {% for each,list in clears %}
+                    <li class="col-md-10">
+                        <a class="btn col-sm-8" data-toggle="collapse" href="#i{{ each.id }}">
+                            <span class="glyphicon glyphicon-star"></span>
+
+                            {#this is where we add a todoitem#}
+
+                            {{ each }}
+                            <span>
+                                <a class="btn-floating btn-large waves-effect waves-light blue"
+                                   href="updatelist/{{ each.id }}"><i
+                                        class="material-icons ">edit</i></a>
+                        <a class="btn-floating btn-large waves-effect waves-light red"
+                           href="deletelist/{{ each.id }}"><i class="material-icons ">delete</i></a>
+                                </span>
+                        </a>
+
+
+                        <div id="i{{ each.id }}" class="collapse">
+                            <div class="col-sm-3"><a class="btn-floating btn-large waves-effect waves-light red"
+                                                     href="/todo/createitem/{{ each.id }}/" style="top:75%"
+
+                            ><i class="material-icons">add</i></a>
+                            </div>
+                            <div class="col-sm-9">
+                                <dl>
+                                    {% for every in list %}
+                                        <dt id="i{{ every.id }}">
+                                            {{ every.desc }}
+                                            <a class="btn-floating btn-small waves-effect waves-light blue"
+                                               href="/todo/updateitem/{{ every.id }}"><i class="material-icons ">edit</i></a>
+                                            <a class="btn-floating btn-small waves-effect waves-light red"
+                                               href="/todo/deleteitem/{{ every.id }}"><i
+                                                    class="material-icons ">delete</i></a>
+                                        </dt>
+                                        <dd style="margin-left: 20px">{{ every.due_date }} {{ every.completed }}</dd>
+
+
+                                    {% endfor %}
+                                </dl>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

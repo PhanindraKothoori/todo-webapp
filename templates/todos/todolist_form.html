@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create a list</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href={% static 'css/bootstrap.css' %}>
+    <link rel="stylesheet" href={% static 'css/materialize.css' %}>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src={% static 'js/jquery-2.2.4.min.js' %}></script>
+    <script src={% static 'js/bootstrap.min.js' %}></script>
+    <style>
+        .container {
+            background-color: #9acfea;
+        }
+
+        {#        ul {#}
+        {#            font-size-adjust: inherit;#}
+        {#            font-size: large;#}
+        {#        }#}
+        dl {
+            list-style: armenian;
+        }
+    </style>
+</head>
+<body class="container">
+<div class="jumbotron">
+
+		<h1>Create a list!</h1>
+
+
+</div>
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+
+    <input class="btn" type="submit" value="Save">
+
+</form>
+<br/>
+<button id="todaysdate" class="btn float-right" onclick="$(function() {
+var d=new Date()
+$('#id_created').val(d.getMonth().toString()+'/'+d.getDate().toString()+'/'+d.getFullYear().toString()+' '+d.getHours()+':'+d.getMinutes()+':'+d.getSeconds()+'.'+d.getMilliseconds())
+})">Today's date</button>
+
+</body>
+</html>

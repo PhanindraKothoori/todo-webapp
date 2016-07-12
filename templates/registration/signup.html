@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href={% static 'css/materialize.css' %}>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src={% static 'js/jquery-2.2.4.min.js' %}></script>
+    <script src={% static 'js/bootstrap.min.js' %}></script>
+    <style>
+        .form-group{
+            background-color: #2498cf;
+        }
+        .form
+        {
+
+            margin-top: 5%;
+            margin-right: 5%;
+            margin-bottom: 5%;
+            margin-left: 5%;
+        }
+        .jumbotron{
+            height: 10%;
+        }
+        .container-fluid, body {
+            background-color: #2385b8;
+        }
+
+        dl {
+            list-style: armenian;
+        }
+        .nav {
+            text-align: right;
+        }
+    </style>
+</head>
+<body class="container">
+<div class="container form-group">
+<div class="jumbotron" >
+	<div class="container">
+		<h1>Sign Up</h1>
+
+	</div>
+</div>
+
+<form class="form" method="post" >
+    {% csrf_token %}
+    {{ form.username.label }}:
+    {{ form.username }}
+    {{ form.email.label }}:
+    {{ form.email }}
+    {{ form.first_name.label }}:
+    {{ form.first_name }}
+    {{ form.last_name.label }}:
+    {{ form.last_name }}
+    {{ form.password.label }}:
+    {{ form.password }}
+
+
+    <input class="btn" type="submit" value="Submit">
+</form>
+</div>
+</body>
+</html>
